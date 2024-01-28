@@ -1,19 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-
-const url = "https://swapi.dev/api/";
+import { API } from "../api/api";
+import loader from "../img/200w.gif";   
 
 const PostPage = () => {
 
-    const { id, name } = useParams();
+    const { id } = useParams();
+    
     const [post, setPost] = useState(null);
 
     useEffect(() => {
-        axios.get(url + '/planets/' + id + 1)
+        axios.get(API + '/planets/' + id)
             .then((response) => {
                 setPost(response.data)
-                console.log(response);
             });
     });
 
@@ -21,12 +21,15 @@ const PostPage = () => {
         <>
             <Link to='..'>назад</Link>
             <h1>ПОСТ</h1>
-            <div>
-                {name}
-            </div>
-            <p>
-                {post && post.terrain}
-            </p>
+            {
+                post ? 
+                 <>
+                    <p>{post.name}</p>
+                    <p>{post.terrain}</p>
+                 </>
+                 :
+                 <img src={loader} />
+            }
 
         </>
     )

@@ -9,7 +9,7 @@ function App() {
       <Routes>
 
         <Route path='/' element={<MainPage/>}/>
-        <Route path='/post/:id/:name' element={<PostPage/>}/>
+        <Route path='/post/:id' element={<PostPage/>}/>
 
       </Routes>
     </BrowserRouter>
